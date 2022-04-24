@@ -1,0 +1,25 @@
+; 対象のファイルを選択する
+SRC_PATH='/mnt/c/Work/Tool/sed_test/test.txt'
+DST_PATH='/mnt/c/Work/Tool/sed_test/test.txt'
+
+;コマンドのベースを宣言する
+TARGET_COMMAND='sed -e '#39's/aefaf/'
+TARGET_BACK='/'#39#32
+
+;コマンドの後半部分を生成する
+strconcat TARGET_BACK SRC_PATH
+strconcat TARGET_BACK ' -i '
+strconcat TARGET_BACK DST_PATH
+
+;更新内容の入力を促す
+inputbox "数値を入力してください。" "FAN制御"
+
+;入力値を反映したコマンドを作成
+strconcat TARGET_COMMAND inputstr
+strconcat TARGET_COMMAND TARGET_BACK
+
+;sedコマンドを実行
+sendln TARGET_COMMAND
+
+;iniファイル転送コマンドを実行
+;SendIniFile SRC_PATH DST_PATH
